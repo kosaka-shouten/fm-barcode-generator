@@ -36,10 +36,11 @@ var enc_barcode = function(){
 
   var calc_date00 = function(date){
     var t = new Date(date);
-    var s = Math.floor(t.getTime()/1000);
-    var d = Math.floor(s/(60*60*24));
+    var n = Date.parse(t.getFullYear()+"/01/01");
+    var x =(t - n)/1000/60/60/24;
+    x = Math.floor(x);
 
-    return (d+35)%100;
+    return ("0" + (x%100+1)).slice(-2);
   }
 
   var form = document.forms.info;
