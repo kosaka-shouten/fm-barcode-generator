@@ -1,29 +1,24 @@
-var gug = ["LLLLLL","LLGLGG","LLGGLG","LLGGGL","LGLLGG","LGGLLG","LGGGLL","LGLGLG","LGLGGL","LGGLGL"]
-var enc_jan = function(txt){
-  // Left Block
-  var first = txt[0]
-  var enc = "_"+first+"*"
-  var max = ((txt.length<7)? txt.length:7)
-  for(var i = 1;i< max;i++){
-    enc+=gug[first][i-1]+txt[i]
-  }
+var enc_jan = function(txt) {
+  var gug = ["LLLLLL", "LLGLGG", "LLGGLG", "LLGGGL", "LGLLGG", "LGGLLG", "LGGGLL", "LGLGLG", "LGLGGL", "LGGLGL"]
 
-  enc+="**"
+  // Left Block
+  var first = txt.length == 8 ? 0 : txt[0];
+  var enc = "_" + txt[0] + "*";
+  var max = parseInt(txt.length / 2);
+  for (var i = 1; i < max; i++) {
+    enc += gug[first][i - 1] + txt[i];
+  };
+
+  // Center Bar
+  enc += "**";
 
   // Right Block
-  var max = ((txt.length<12)? txt.length:12)
-  for(var i = 7;i<  max;i++){
-    enc+="R"+txt[i]
-  }
-  pr = 0
+  var max = txt.length;
+  for (var i = parseInt(txt.length / 2); i < max; i++) {
+    enc += "R" + txt[i];
+  };
 
-  //Checksum
-  for(var i= Math.min(txt.length,12);i>=1;i--){
-    pr+=parseInt(txt[i-1])*(i%2==1?1:3)
-  }
-  pr=(10-(pr%10))%10
-  enc+="R"+pr
-  enc+="*"
+  enc += "*";
 
-  return enc
+  return enc;
 }

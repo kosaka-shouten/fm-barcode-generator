@@ -38,15 +38,14 @@
         <button type="button" class="btn btn-default" onClick="this.form.data.value = ''">clear</button>
       </span>
     </div>
-    <div class="form-group input-group">
-      <input type="button" class="form-control" value="ENCODE" onclick="enc_barcode()" />
-    </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="enable_shortjan" />SHORT JANCODE</label>
+      </div>
+    <button type="button" class="btn btn-default" onclick="enc_barcode()">ENCODE</button>
   </form>
 
   <h3>Barcode</h3>
-  <div class="input-group">
-    <input type="button" class="form-control" value="All Clear" onclick="$('#barcode').empty()" />
-  </div>
+  <button type="button" class="btn btn-default" onclick="$('#barcode').empty()">All Clear</button>
   <div id="barcode"></div>
 </div>
 </body>
